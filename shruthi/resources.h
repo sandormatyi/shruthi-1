@@ -442,7 +442,7 @@ extern const prog_uint8_t chr_res_special_characters[] PROGMEM;
 #define STR_RES_MONKEY 332  // monkey
 #define STR_RES__OFF 333  // off
 #define STR_RES_THRU 334  // thru
-#define STR_RES___SEQ 335  // seq
+#define STR_RES_EXC_THRU 335 // excl
 #define STR_RES_CTRL 336  // ctrl
 #define STR_RES_FULL 337  // full
 #define STR_RES_1TV 338  // 1~|

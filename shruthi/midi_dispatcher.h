@@ -183,11 +183,14 @@ class MidiDispatcher : public midi::MidiDevice {
           Send(status, data, data_size);
         }
       }
-    } else if (mode() == MIDI_OUT_SEQUENCER) {
-      if ((hi == 0xf0 && status != 0xf0 && status != 0xf7)) {
-        Send(status, NULL, 0);
-      }
+    } else if (mode() == MIDI_OUT_EXCLUSIVE_THRU && !accepted_channel) {
+      Send(status, data, data_size);
     }
+    // } else if (mode() == MIDI_OUT_SEQUENCER) {
+    //   if ((hi == 0xf0 && status != 0xf0 && status != 0xf7)) {
+    //     Send(status, NULL, 0);
+    //   }
+    // }
   }
   
   static void RawByte(uint8_t byte) {
@@ -208,15 +211,15 @@ class MidiDispatcher : public midi::MidiDevice {
   
   // ------ MIDI out handling --------------------------------------------------
   static inline void OnInternalNoteOff(uint8_t note) {
-    if (mode() == MIDI_OUT_SEQUENCER) {
-      Send3(0x90 | channel(), note, 0);
-    }
+    // if (mode() == MIDI_OUT_SEQUENCER) {
+    //   Send3(0x90 | channel(), note, 0);
+    // }
   }
   
   static inline void OnInternalNoteOn(uint8_t note, uint8_t velocity) {
-    if (mode() == MIDI_OUT_SEQUENCER) {
-      Send3(0x90 | channel(), note, velocity);
-    }
+    // if (mode() == MIDI_OUT_SEQUENCER) {
+    //   Send3(0x90 | channel(), note, velocity);
+    // }
   }
   
   static inline void ForwardNoteOn(
@@ -231,21 +234,21 @@ class MidiDispatcher : public midi::MidiDevice {
   }
 
   static inline void OnStart() {
-    if (mode() == MIDI_OUT_SEQUENCER) {
-      SendNow(0xfa);
-    }
+    // if (mode() == MIDI_OUT_SEQUENCER) {
+    //   SendNow(0xfa);
+    // }
   }
 
   static inline void OnStop() {
-    if (mode() == MIDI_OUT_SEQUENCER) {
-      SendNow(0xfc);
-    }
+    // if (mode() == MIDI_OUT_SEQUENCER) {
+    //   SendNow(0xfc);
+    // }
   }
   
   static inline void OnClock() {
-    if (mode() == MIDI_OUT_SEQUENCER) {
-      SendNow(0xf8);
-    }
+    // if (mode() == MIDI_OUT_SEQUENCER) {
+    //   SendNow(0xf8);
+    // }
   }
   
   static inline void OnProgramChange(uint16_t n) {

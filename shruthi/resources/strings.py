@@ -370,7 +370,7 @@ monkey
 
  off
 thru
-seq
+excl
 ctrl
 full
 1~|
