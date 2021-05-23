@@ -132,6 +132,7 @@ union OscillatorState {
   QuadSawPadState qs;
   CrushedSineState cr;
   uint16_t secondary_phase;
+  uint8_t output_sample;
 };
 
 class Oscillator {
@@ -157,20 +158,19 @@ class Oscillator {
     phase_increment_ = increment;
     sync_input_ = sync_input;
     sync_output_ = sync_output;
-    // A hack: when pulse width is set to 0, use a simple wavetable.
-    if (shape_ == WAVEFORM_SQUARE) {
-      uint8_t shape = shape_;
-      if (parameter_ == 0) {
-        RenderSimpleWavetable(buffer);
-      } else {
-        RenderBandlimitedPwm(buffer);
-      }
-    } else {
-      uint8_t index = shape > WAVEFORM_VOWEL ? WAVEFORM_WAVETABLE_1 : shape;
-      RenderFn fn;
-      ResourcesManager::Load(fn_table_, index, &fn);
-      (this->*fn)(buffer);
+    uint8_t index = 
+      shape >= WAVEFORM_WAVETABLE_9 ?
+      (shape <= WAVEFORM_WAVEQUENCE ?
+        WAVEFORM_WAVETABLE_1 :
+        shape - WAVEFORM_WAVEQUENCE + WAVEFORM_WAVETABLE_9) : 
+        shape;
+    RenderFn fn;
+    ResourcesManager::Load(fn_table_, index, &fn);
+    if (shape_ == WAVEFORM_WAVEQUENCE) {
+      fn = &Oscillator::RenderWavequence;
     }
+    (this->*fn)(buffer);
+
   }
   
   inline void set_parameter(uint8_t parameter) {
@@ -209,25 +209,25 @@ class Oscillator {
   uint8_t* sync_output_;
   
   void RenderSilence(uint8_t* buffer);
-  
-  // Since this is the most computationally expensive function, we still
-  // duplicated it into a "master" and a "slave" version for OSC1 and OSC2,
-  // with the corresponding oscillators sync code stripped away.
-  void RenderBandlimitedPwm(uint8_t* buffer);
-  
   void RenderSimpleWavetable(uint8_t* buffer);
   void RenderInterpolatedWavetable(uint8_t* buffer);
   void RenderSweepingWavetableRam(uint8_t* buffer);
   void RenderCzSaw(uint8_t* buffer);
-  void RenderCzPulseReso(uint8_t* buffer);
   void RenderCzReso(uint8_t* buffer);
+  void RenderCzResoSaw(uint8_t* buffer);
+  void RenderCzResoPulse(uint8_t* buffer);
   void RenderFm(uint8_t* buffer);
   void Render8BitLand(uint8_t* buffer);
   void RenderCrushedSine(uint8_t* buffer);
   void RenderVowel(uint8_t* buffer);
   void RenderDirtyPwm(uint8_t* buffer);
-  void RenderQuadSawPad(uint8_t* buffer);
+  void RenderQuad(uint8_t* buffer);
   void RenderFilteredNoise(uint8_t* buffer);
+  void RenderPolyBlepSaw(uint8_t* buffer);
+  void RenderPolyBlepCSaw(uint8_t* buffer);
+  void RenderPolyBlepPwm(uint8_t* buffer);
+  void RenderNewTriangle(uint8_t* buffer);
+  void RenderWavequence(uint8_t* buffer);
 
   DISALLOW_COPY_AND_ASSIGN(Oscillator);
 };

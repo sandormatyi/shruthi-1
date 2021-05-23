@@ -314,8 +314,8 @@ compare
 ----
 
 v
-\x06\x07-1    SN #4370
-v1.03
+mutable   YA\x08.05
+instruments \x06\x07-1
 shruthi classic
 (4 knobs)
 shruthi xt
@@ -410,15 +410,28 @@ pop
 
 none
 saw
+csaw
+oldsaw
 square
+dpwm
 triang
 zsaw
-zreso
-ztri
-zpulse
+lpzsaw
+pkzsaw
+hpzsaw
+lpzpulse
+pkzpulse
+hpzpulse
 zsync
+ztri
 pad
+qpwm
 fm
+fmfb
+8bits
+crush
+noise
+vowel
 waves
 tampur
 digitl
@@ -428,11 +441,6 @@ slap
 organ
 male
 user
-8bits
-crush
-pwm
-noise
-vowel
 belish
 polatd
 cello
@@ -443,6 +451,7 @@ frmnt2
 res3hp
 electp
 vibes
+wavquence
 
  lpf
 ssm

@@ -108,9 +108,7 @@ sine = -numpy.sin(numpy.arange(WAVETABLE_SIZE + 1) / float(WAVETABLE_SIZE) * 2 *
 # Band limited waveforms.
 num_zones = (107 - 24) / 16 + 2
 bl_pulse_tables = []
-bl_square_tables = []
 bl_saw_tables = []
-bl_tri_tables = []
 
 wrap = numpy.fmod(numpy.arange(WAVETABLE_SIZE + 1) + WAVETABLE_SIZE / 2, WAVETABLE_SIZE)
 quadrature = numpy.fmod(numpy.arange(WAVETABLE_SIZE + 1) + WAVETABLE_SIZE / 4, WAVETABLE_SIZE)
@@ -137,21 +135,6 @@ for zone in range(num_zones):
   else:
     pulse = pulse[fill]
 
-  square = numpy.cumsum(pulse - pulse[wrap])
-  triangle = -numpy.cumsum(square[::-1] - square.mean()) / WAVETABLE_SIZE
-
-  square -= JUNINESS * triangle
-  if zone == num_zones - 1:
-    square = sine
-  bl_square_tables.append(('bandlimited_square_%d' % zone,
-                          Scale(square[quadrature])))
-
-  triangle = triangle[quadrature]
-  if zone == num_zones - 1:
-    triangle = sine
-  bl_tri_tables.append(('bandlimited_triangle_%d' % zone,
-                        Scale(triangle[quadrature])))
-
   saw = -numpy.cumsum(pulse[wrap] - pulse.mean())
   saw -= JUNINESS * numpy.cumsum(saw - saw.mean()) / WAVETABLE_SIZE
   if zone == num_zones - 1:
@@ -160,15 +143,9 @@ for zone in range(num_zones):
                        Scale(saw[quadrature])))
 
 
-triangle_lowest_octave = bl_tri_tables[0]
-for i in xrange(3):
-  bl_tri_tables[i] = triangle_lowest_octave
-
 
 waveforms.extend(bl_pulse_tables)
-waveforms.extend(bl_square_tables)
 waveforms.extend(bl_saw_tables)
-waveforms.extend(bl_tri_tables)
 
 
 """----------------------------------------------------------------------------
@@ -225,29 +202,65 @@ waveforms.append(
     ('ssm2164_linearization', delay_gains.astype(int))
 )
 
+"""----------------------------------------------------------------------------
+Create table of x^-1 used for crude division calculations
+----------------------------------------------------------------------------"""
+quotients = numpy.arange(256, 512, 2)
+divisions = 65535.0 / quotients;
+divisions = divisions.astype(int)
+waveforms.append(
+    ('division_table', divisions)
+)
+
+"""----------------------------------------------------------------------------
+Create table of x^2 used in polyblep calculations
+----------------------------------------------------------------------------"""
+bleptable = numpy.linspace(0.0, 1.0, 128) ** 2.0
+bleptable = numpy.round(127*bleptable).astype(int)
+waveforms.append(
+    ('blep_table', bleptable)
+)
 
 """----------------------------------------------------------------------------
 Wavetables
 -----------------------------------------------------------------------------"""
 
 wavetables = [
+# Waves
 16, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14,
+# Tampur
 16, 16, 17, 17, 17, 18, 18, 19, 20, 20, 21, 22, 22, 22, 23, 23, 24, 24,
+# Digital
 16, 3, 47, 25, 26, 27, 27, 87, 87, 28, 28, 29, 30, 31, 32, 33, 34, 34,
+# Metallic
 16, 35, 36, 37, 38, 39, 40, 41, 41, 42, 42, 43, 44, 44, 44, 45, 46, 46,
+# Bowed
 8, 47, 48, 49, 49, 50, 51, 52, 53, 53, 0, 0, 0, 0, 0, 0, 0, 0,
+# Slap
 8, 54, 55, 56, 56, 57, 57, 57, 57, 57, 0, 0, 0, 0, 0, 0, 0, 0,
+# Organ
 16, 3, 58, 58, 120, 59, 59, 60, 61, 62, 63, 64, 65, 65, 66, 67, 68, 68,
+# Male
 16, 75, 69, 70, 71, 72, 73, 74, 75, 76, 81, 77, 78, 80, 79, 80, 81, 81,
+# Bellish
 4, 82, 82, 82, 83, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+# Polatd
 8, 87, 84, 87, 116, 85, 86, 86, 87, 87, 0, 0, 0, 0, 0, 0, 0, 0,
+# Cello
 4, 88, 89, 90, 91, 89, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+# Clpswp
 4, 92, 92, 93, 94, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+# Female
 16, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 110,
+# Formant vocal
 4, 111, 112, 113, 112, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+# Formant 2
 16, 120, 120, 114, 114, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115, 115,
+# Res3hp
 4, 93, 116, 117, 118, 119, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+# Electp
 8, 120, 120, 120, 120, 120, 120, 116, 121, 121, 0, 0, 0, 0, 0, 0, 0, 0,
+# Vibes
 8, 122, 123, 123, 124, 125, 126, 126, 126, 3, 0, 0, 0, 0, 0, 0, 0, 0,
 ]
 

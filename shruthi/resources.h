@@ -91,26 +91,18 @@ extern const prog_uint32_t lut_res_tempo_phase_increment[] PROGMEM;
 extern const prog_uint8_t wav_res_formant_sine[] PROGMEM;
 extern const prog_uint8_t wav_res_formant_square[] PROGMEM;
 extern const prog_uint8_t wav_res_sine[] PROGMEM;
-extern const prog_uint8_t wav_res_bandlimited_square_0[] PROGMEM;
-extern const prog_uint8_t wav_res_bandlimited_square_1[] PROGMEM;
-extern const prog_uint8_t wav_res_bandlimited_square_2[] PROGMEM;
-extern const prog_uint8_t wav_res_bandlimited_square_3[] PROGMEM;
-extern const prog_uint8_t wav_res_bandlimited_square_4[] PROGMEM;
-extern const prog_uint8_t wav_res_bandlimited_square_5[] PROGMEM;
 extern const prog_uint8_t wav_res_bandlimited_saw_0[] PROGMEM;
 extern const prog_uint8_t wav_res_bandlimited_saw_1[] PROGMEM;
 extern const prog_uint8_t wav_res_bandlimited_saw_2[] PROGMEM;
 extern const prog_uint8_t wav_res_bandlimited_saw_3[] PROGMEM;
 extern const prog_uint8_t wav_res_bandlimited_saw_4[] PROGMEM;
 extern const prog_uint8_t wav_res_bandlimited_saw_5[] PROGMEM;
-extern const prog_uint8_t wav_res_bandlimited_triangle_0[] PROGMEM;
-extern const prog_uint8_t wav_res_bandlimited_triangle_3[] PROGMEM;
-extern const prog_uint8_t wav_res_bandlimited_triangle_4[] PROGMEM;
-extern const prog_uint8_t wav_res_bandlimited_triangle_5[] PROGMEM;
 extern const prog_uint8_t wav_res_vowel_data[] PROGMEM;
 extern const prog_uint8_t wav_res_distortion[] PROGMEM;
 extern const prog_uint8_t wav_res_env_expo[] PROGMEM;
 extern const prog_uint8_t wav_res_ssm2164_linearization[] PROGMEM;
+extern const prog_uint8_t wav_res_division_table[] PROGMEM;
+extern const prog_uint8_t wav_res_blep_table[] PROGMEM;
 extern const prog_uint8_t wav_res_waves[] PROGMEM;
 extern const prog_uint8_t wav_res_wavetables[] PROGMEM;
 extern const prog_uint8_t wav_res_version[] PROGMEM;
@@ -399,8 +391,8 @@ extern const prog_uint8_t chr_res_special_characters[] PROGMEM;
 #define STR_RES_COMPARE 281  // compare
 #define STR_RES_ 282  // ----
 #define STR_RES_V 283  // v
-#define STR_RES_671____SN__4370 284  // -1    SN #4370
-#define STR_RES_V1_03 285  // v1.03
+#define STR_RES_MUTABLE___YA8_05 284  // mutable   YA.05
+#define STR_RES_INSTRUMENTS_671 285  // instruments -1
 #define STR_RES_SHRUTHI_CLASSIC 286  // shruthi classic
 #define STR_RES_4_KNOBS 287  // (4 knobs)
 #define STR_RES_SHRUTHI_XT 288  // shruthi xt
@@ -486,83 +478,92 @@ extern const prog_uint8_t chr_res_special_characters[] PROGMEM;
 #define STR_RES_POP 368  // pop
 #define STR_RES_NONE 369  // none
 #define STR_RES_SAW 370  // saw
-#define STR_RES_SQUARE 371  // square
-#define STR_RES_TRIANG 372  // triang
-#define STR_RES_ZSAW 373  // zsaw
-#define STR_RES_ZRESO 374  // zreso
-#define STR_RES_ZTRI 375  // ztri
-#define STR_RES_ZPULSE 376  // zpulse
-#define STR_RES_ZSYNC 377  // zsync
-#define STR_RES_PAD 378  // pad
-#define STR_RES_FM 379  // fm
-#define STR_RES_WAVES 380  // waves
-#define STR_RES_TAMPUR 381  // tampur
-#define STR_RES_DIGITL 382  // digitl
-#define STR_RES_METALL 383  // metall
-#define STR_RES_BOWED 384  // bowed
-#define STR_RES_SLAP 385  // slap
-#define STR_RES_ORGAN 386  // organ
-#define STR_RES_MALE 387  // male
-#define STR_RES_USER 388  // user
+#define STR_RES_CSAW 371  // csaw
+#define STR_RES_OLDSAW 372  // oldsaw
+#define STR_RES_SQUARE 373  // square
+#define STR_RES_DPWM 374  // dpwm
+#define STR_RES_TRIANG 375  // triang
+#define STR_RES_ZSAW 376  // zsaw
+#define STR_RES_LPZSAW 377  // lpzsaw
+#define STR_RES_PKZSAW 378  // pkzsaw
+#define STR_RES_HPZSAW 379  // hpzsaw
+#define STR_RES_LPZPULSE 380  // lpzpulse
+#define STR_RES_PKZPULSE 381  // pkzpulse
+#define STR_RES_HPZPULSE 382  // hpzpulse
+#define STR_RES_ZSYNC 383  // zsync
+#define STR_RES_ZTRI 384  // ztri
+#define STR_RES_PAD 385  // pad
+#define STR_RES_QPWM 386  // qpwm
+#define STR_RES_FM 387  // fm
+#define STR_RES_FMFB 388  // fmfb
 #define STR_RES_8BITS 389  // 8bits
 #define STR_RES_CRUSH 390  // crush
-#define STR_RES_PWM 391  // pwm
-#define STR_RES___NOISE 392  // noise
-#define STR_RES_VOWEL 393  // vowel
-#define STR_RES_BELISH 394  // belish
-#define STR_RES_POLATD 395  // polatd
-#define STR_RES_CELLO 396  // cello
-#define STR_RES_CLPSWP 397  // clpswp
-#define STR_RES_FEMALE 398  // female
-#define STR_RES_FMTVOC 399  // fmtvoc
-#define STR_RES_FRMNT2 400  // frmnt2
-#define STR_RES_RES3HP 401  // res3hp
-#define STR_RES_ELECTP 402  // electp
-#define STR_RES_VIBES 403  // vibes
-#define STR_RES__LPF 404  // lpf
-#define STR_RES_SSM 405  // ssm
-#define STR_RES_SVF 406  // svf
-#define STR_RES_DSP 407  // dsp
-#define STR_RES_PVK 408  // pvk
-#define STR_RES_4PM 409  // 4pm
-#define STR_RES_DLY 410  // dly
-#define STR_RES_SP 411  // sp
-#define STR_RES_SPLASH 412  // splash
-#define STR_RES__FILTER 413  // filter
-#define STR_RES_PRESET 414  // preset
-#define STR_RES_EQUAL 415  // equal
-#define STR_RES_JUST 416  // just
-#define STR_RES_PYTHAG 417  // pythag
-#define STR_RES_1_4_EB 418  // 1/4 eb
-#define STR_RES_1_4_E 419  // 1/4 e
-#define STR_RES_1_4_EA 420  // 1/4 ea
-#define STR_RES_BHAIRA 421  // bhaira
-#define STR_RES_GUNAKR 422  // gunakr
-#define STR_RES_MARWA 423  // marwa
-#define STR_RES_SHREE 424  // shree
-#define STR_RES_PURVI 425  // purvi
-#define STR_RES_BILAWA 426  // bilawa
-#define STR_RES_YAMAN 427  // yaman
-#define STR_RES_KAFI 428  // kafi
-#define STR_RES_BHIMPA 429  // bhimpa
-#define STR_RES_DARBAR 430  // darbar
-#define STR_RES_BAGESH 431  // bagesh
-#define STR_RES_RAGESH 432  // ragesh
-#define STR_RES_KHAMAJ 433  // khamaj
-#define STR_RES_MIMAL 434  // mi'mal
-#define STR_RES_PARAME 435  // parame
-#define STR_RES_RANGES 436  // ranges
-#define STR_RES_GANGES 437  // ganges
-#define STR_RES_KAMESH 438  // kamesh
-#define STR_RES_PALAS_ 439  // palas
-#define STR_RES_NATBHA 440  // natbha
-#define STR_RES_M_KAUN 441  // m.kaun
-#define STR_RES_BAIRAG 442  // bairag
-#define STR_RES_B_TODI 443  // b.todi
-#define STR_RES_CHANDR 444  // chandr
-#define STR_RES_KAUSHI 445  // kaushi
-#define STR_RES_JOGESH 446  // jogesh
-#define STR_RES_RASIA 447  // rasia
+#define STR_RES___NOISE 391  // noise
+#define STR_RES_VOWEL 392  // vowel
+#define STR_RES_WAVES 393  // waves
+#define STR_RES_TAMPUR 394  // tampur
+#define STR_RES_DIGITL 395  // digitl
+#define STR_RES_METALL 396  // metall
+#define STR_RES_BOWED 397  // bowed
+#define STR_RES_SLAP 398  // slap
+#define STR_RES_ORGAN 399  // organ
+#define STR_RES_MALE 400  // male
+#define STR_RES_USER 401  // user
+#define STR_RES_BELISH 402  // belish
+#define STR_RES_POLATD 403  // polatd
+#define STR_RES_CELLO 404  // cello
+#define STR_RES_CLPSWP 405  // clpswp
+#define STR_RES_FEMALE 406  // female
+#define STR_RES_FMTVOC 407  // fmtvoc
+#define STR_RES_FRMNT2 408  // frmnt2
+#define STR_RES_RES3HP 409  // res3hp
+#define STR_RES_ELECTP 410  // electp
+#define STR_RES_VIBES 411  // vibes
+#define STR_RES_WAVQUENCE 412  // wavquence
+#define STR_RES__LPF 413  // lpf
+#define STR_RES_SSM 414  // ssm
+#define STR_RES_SVF 415  // svf
+#define STR_RES_DSP 416  // dsp
+#define STR_RES_PVK 417  // pvk
+#define STR_RES_4PM 418  // 4pm
+#define STR_RES_DLY 419  // dly
+#define STR_RES_SP 420  // sp
+#define STR_RES_SPLASH 421  // splash
+#define STR_RES__FILTER 422  // filter
+#define STR_RES_PRESET 423  // preset
+#define STR_RES_EQUAL 424  // equal
+#define STR_RES_JUST 425  // just
+#define STR_RES_PYTHAG 426  // pythag
+#define STR_RES_1_4_EB 427  // 1/4 eb
+#define STR_RES_1_4_E 428  // 1/4 e
+#define STR_RES_1_4_EA 429  // 1/4 ea
+#define STR_RES_BHAIRA 430  // bhaira
+#define STR_RES_GUNAKR 431  // gunakr
+#define STR_RES_MARWA 432  // marwa
+#define STR_RES_SHREE 433  // shree
+#define STR_RES_PURVI 434  // purvi
+#define STR_RES_BILAWA 435  // bilawa
+#define STR_RES_YAMAN 436  // yaman
+#define STR_RES_KAFI 437  // kafi
+#define STR_RES_BHIMPA 438  // bhimpa
+#define STR_RES_DARBAR 439  // darbar
+#define STR_RES_BAGESH 440  // bagesh
+#define STR_RES_RAGESH 441  // ragesh
+#define STR_RES_KHAMAJ 442  // khamaj
+#define STR_RES_MIMAL 443  // mi'mal
+#define STR_RES_PARAME 444  // parame
+#define STR_RES_RANGES 445  // ranges
+#define STR_RES_GANGES 446  // ganges
+#define STR_RES_KAMESH 447  // kamesh
+#define STR_RES_PALAS_ 448  // palas
+#define STR_RES_NATBHA 449  // natbha
+#define STR_RES_M_KAUN 450  // m.kaun
+#define STR_RES_BAIRAG 451  // bairag
+#define STR_RES_B_TODI 452  // b.todi
+#define STR_RES_CHANDR 453  // chandr
+#define STR_RES_KAUSHI 454  // kaushi
+#define STR_RES_JOGESH 455  // jogesh
+#define STR_RES_RASIA 456  // rasia
 #define LUT_RES_LFO_INCREMENTS 0
 #define LUT_RES_LFO_INCREMENTS_SIZE 128
 #define LUT_RES_ENV_PORTAMENTO_INCREMENTS 1
@@ -657,64 +658,40 @@ extern const prog_uint8_t chr_res_special_characters[] PROGMEM;
 #define WAV_RES_FORMANT_SQUARE_SIZE 256
 #define WAV_RES_SINE 2
 #define WAV_RES_SINE_SIZE 257
-#define WAV_RES_BANDLIMITED_SQUARE_0 3
-#define WAV_RES_BANDLIMITED_SQUARE_0_SIZE 257
-#define WAV_RES_BANDLIMITED_SQUARE_1 4
-#define WAV_RES_BANDLIMITED_SQUARE_1_SIZE 257
-#define WAV_RES_BANDLIMITED_SQUARE_2 5
-#define WAV_RES_BANDLIMITED_SQUARE_2_SIZE 257
-#define WAV_RES_BANDLIMITED_SQUARE_3 6
-#define WAV_RES_BANDLIMITED_SQUARE_3_SIZE 257
-#define WAV_RES_BANDLIMITED_SQUARE_4 7
-#define WAV_RES_BANDLIMITED_SQUARE_4_SIZE 257
-#define WAV_RES_BANDLIMITED_SQUARE_5 8
-#define WAV_RES_BANDLIMITED_SQUARE_5_SIZE 257
-#define WAV_RES_BANDLIMITED_SQUARE_6 9
-#define WAV_RES_BANDLIMITED_SQUARE_6_SIZE 257
-#define WAV_RES_BANDLIMITED_SAW_0 10
+#define WAV_RES_BANDLIMITED_SAW_0 3
 #define WAV_RES_BANDLIMITED_SAW_0_SIZE 257
-#define WAV_RES_BANDLIMITED_SAW_1 11
+#define WAV_RES_BANDLIMITED_SAW_1 4
 #define WAV_RES_BANDLIMITED_SAW_1_SIZE 257
-#define WAV_RES_BANDLIMITED_SAW_2 12
+#define WAV_RES_BANDLIMITED_SAW_2 5
 #define WAV_RES_BANDLIMITED_SAW_2_SIZE 257
-#define WAV_RES_BANDLIMITED_SAW_3 13
+#define WAV_RES_BANDLIMITED_SAW_3 6
 #define WAV_RES_BANDLIMITED_SAW_3_SIZE 257
-#define WAV_RES_BANDLIMITED_SAW_4 14
+#define WAV_RES_BANDLIMITED_SAW_4 7
 #define WAV_RES_BANDLIMITED_SAW_4_SIZE 257
-#define WAV_RES_BANDLIMITED_SAW_5 15
+#define WAV_RES_BANDLIMITED_SAW_5 8
 #define WAV_RES_BANDLIMITED_SAW_5_SIZE 257
-#define WAV_RES_BANDLIMITED_SAW_6 16
+#define WAV_RES_BANDLIMITED_SAW_6 9
 #define WAV_RES_BANDLIMITED_SAW_6_SIZE 257
-#define WAV_RES_BANDLIMITED_TRIANGLE_0 17
-#define WAV_RES_BANDLIMITED_TRIANGLE_0_SIZE 257
-#define WAV_RES__BANDLIMITED_TRIANGLE_0 18
-#define WAV_RES__BANDLIMITED_TRIANGLE_0_SIZE 257
-#define WAV_RES___BANDLIMITED_TRIANGLE_0 19
-#define WAV_RES___BANDLIMITED_TRIANGLE_0_SIZE 257
-#define WAV_RES_BANDLIMITED_TRIANGLE_3 20
-#define WAV_RES_BANDLIMITED_TRIANGLE_3_SIZE 257
-#define WAV_RES_BANDLIMITED_TRIANGLE_4 21
-#define WAV_RES_BANDLIMITED_TRIANGLE_4_SIZE 257
-#define WAV_RES_BANDLIMITED_TRIANGLE_5 22
-#define WAV_RES_BANDLIMITED_TRIANGLE_5_SIZE 257
-#define WAV_RES_BANDLIMITED_TRIANGLE_6 23
-#define WAV_RES_BANDLIMITED_TRIANGLE_6_SIZE 257
-#define WAV_RES_VOWEL_DATA 24
+#define WAV_RES_VOWEL_DATA 10
 #define WAV_RES_VOWEL_DATA_SIZE 63
-#define WAV_RES_DISTORTION 25
+#define WAV_RES_DISTORTION 11
 #define WAV_RES_DISTORTION_SIZE 256
-#define WAV_RES_ENV_EXPO 26
+#define WAV_RES_ENV_EXPO 12
 #define WAV_RES_ENV_EXPO_SIZE 257
-#define WAV_RES_SSM2164_LINEARIZATION 27
+#define WAV_RES_SSM2164_LINEARIZATION 13
 #define WAV_RES_SSM2164_LINEARIZATION_SIZE 64
-#define WAV_RES_WAVES 28
+#define WAV_RES_DIVISION_TABLE 14
+#define WAV_RES_DIVISION_TABLE_SIZE 128
+#define WAV_RES_BLEP_TABLE 15
+#define WAV_RES_BLEP_TABLE_SIZE 128
+#define WAV_RES_WAVES 16
 #define WAV_RES_WAVES_SIZE 16383
-#define WAV_RES_WAVETABLES 29
+#define WAV_RES_WAVETABLES 17
 #define WAV_RES_WAVETABLES_SIZE 324
-#define WAV_RES_VERSION 30
+#define WAV_RES_VERSION 18
 #define WAV_RES_VERSION_SIZE 2
 #define CHR_RES_SPECIAL_CHARACTERS 0
-#define CHR_RES_SPECIAL_CHARACTERS_SIZE 56
+#define CHR_RES_SPECIAL_CHARACTERS_SIZE 64
 typedef avrlib::ResourcesManager<
     ResourceId,
     avrlib::ResourcesTables<
