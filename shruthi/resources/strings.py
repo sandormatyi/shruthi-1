@@ -314,8 +314,8 @@ compare
 ----
 
 v
-mutable   YA\x08.05
-instruments \x06\x07-1
+  sandormatyi   
+LSC++   firmware
 shruthi classic
 (4 knobs)
 shruthi xt
